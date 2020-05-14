@@ -10,7 +10,7 @@ export class InfoPageService {
 
   info: InfoPage = {};
 
-  team: InfoTeam = {};
+  team: InfoTeam[] = [];
 
   loading: boolean = false;
 
@@ -26,17 +26,19 @@ export class InfoPageService {
       .subscribe((resp: InfoPage) => {
 
         this.loading = true;
+
         this.info = resp
+        console.log(this.info)
       })
   }
 
   private getTeam () {
     this.http.get('https://portafolio-dea7a.firebaseio.com/team.json')
-      .subscribe((resp:InfoTeam) => {
+      .subscribe((resp: InfoTeam[]) => {
 
         this.loading = true;
-        this.info = resp
-        console.log(resp)
+
+        this.team = resp
       })
   }
 }
