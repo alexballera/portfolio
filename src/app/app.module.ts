@@ -11,6 +11,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ItemComponent } from './pages/item/item.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BlogComponent } from './pages/blog/blog.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BlogComponent } from './pages/blog/blog.component';
     PortfolioComponent,
     AboutComponent,
     ItemComponent,
-    BlogComponent
+    BlogComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

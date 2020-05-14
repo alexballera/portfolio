@@ -1,8 +1,12 @@
 <div class="ae-container-fluid ae-container-fluid--inner rk-main">
-  <div class="ae-grid au-xs-ta-center au-mb-4">
 
-    <div *ngFor="let person of _infoService.team" class="ae-grid__item item-lg-4 ae-kappa au-mb-3 animate__animated animate__fadeIn animate__fast">
-      <img [src]="person.url" alt="" class="au-mb-3">
+  <app-loading *ngIf="infoPageService.loading"></app-loading>
+
+  <div *ngIf="!infoPageService.loading"
+       class="ae-grid au-xs-ta-center au-mb-4 animate__animated animate__fadeIn animate__fast">
+
+    <div *ngFor="let person of infoPageService.team" class="ae-grid__item item-lg-4 ae-kappa au-mb-3 animate__animated animate__fadeIn animate__fast">
+      <img [src]="person.url" alt="" class="au-mb-3 animate__animated animate__fadeIn">
       <h5 class="ae-u-bolder au-mt-2">{{person.name}}</h5>
       <p class="ae-u-bolder au-mb-3">{{person.description}}</p>
       <p class="au-lg-ta-left au-mb-3 au-pl-4 au-pr-4"></p>

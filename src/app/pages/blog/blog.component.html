@@ -30,8 +30,11 @@
     </svg>
   </div>
   <section class="ae-container-fluid ae-container-fluid--inner rk-blog">
-    <div class="rk-blog__items">
 
+    <app-loading *ngIf="articlesService.loading"></app-loading>
+
+    <div *ngIf="!articlesService.loading"
+         class="rk-blog__items animate__animated animate__fadeIn animate__fast">
       <div *ngFor="let article of articlesService.articles"
            class="rk-blog__item animate__animated animate__fadeIn animate__fast">
         <div class="post-img post-1 rk-landscape-alt rk-tosquare">

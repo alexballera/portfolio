@@ -1,5 +1,9 @@
 <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
-  <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
+
+  <app-loading *ngIf="productsService.loading"></app-loading>
+
+  <div *ngIf="!productsService.loading"
+       class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4 animate__animated animate__fadeIn animate__fast">
     <a *ngFor="let product of productsService.products"
        routerLink="/item"
        class="rk-item ae-masonry__item animate__animated animate__fadeIn animate__fast">

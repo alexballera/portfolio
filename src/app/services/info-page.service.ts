@@ -12,7 +12,7 @@ export class InfoPageService {
 
   team: InfoTeam[] = [];
 
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(private http: HttpClient) {
 
@@ -25,7 +25,7 @@ export class InfoPageService {
     this.http.get('assets/data/data-page.json')
       .subscribe((resp: InfoPage) => {
 
-        this.loading = true;
+        this.loading = false;
 
         this.info = resp
         console.log(this.info)
@@ -36,7 +36,7 @@ export class InfoPageService {
     this.http.get('https://portafolio-dea7a.firebaseio.com/team.json')
       .subscribe((resp: InfoTeam[]) => {
 
-        this.loading = true;
+        this.loading = false;
 
         this.team = resp
       })
