@@ -25,4 +25,10 @@ export class ProductsService {
 
       })
   }
+
+  getProduct(id: string) {
+
+    return this.http.get(`https://portafolio-dea7a.firebaseio.com/productos/${id}.json`)
+
+  }
 }

@@ -28,7 +28,6 @@ export class InfoPageService {
         this.loading = false;
 
         this.info = resp
-        console.log(this.info)
       })
   }
 
