@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {InfoProductsInterface} from "../interfaces/info-products.interface";
+import {Products} from "../interfaces/info-products.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,8 @@ import {InfoProductsInterface} from "../interfaces/info-products.interface";
 export class ProductsService {
 
   loading: boolean = true;
-
-  products: InfoProductsInterface[] = [];
+  products: Products[] = [];
+  productsFiltered: Products[] = [];
 
   constructor(private http: HttpClient) {
     this.getProducts()
@@ -17,7 +17,7 @@ export class ProductsService {
 
   private getProducts() {
     this.http.get('https://portafolio-dea7a.firebaseio.com/productos_idx.json')
-      .subscribe((resp: InfoProductsInterface[]) => {
+      .subscribe((resp: Products[]) => {
 
         this.loading = false;
 
@@ -27,8 +27,14 @@ export class ProductsService {
   }
 
   getProduct(id: string) {
-
     return this.http.get(`https://portafolio-dea7a.firebaseio.com/productos/${id}.json`)
+  }
 
+  searchProducts(term: string) {
+    this.productsFiltered = this.products.filter(product => {
+      return true
+    })
+
+    console.log(this.productsFiltered)
   }
 }
