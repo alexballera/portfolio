@@ -4,6 +4,7 @@ import {PortfolioComponent} from "./pages/portfolio/portfolio.component";
 import {AboutComponent} from "./pages/about/about.component";
 import {ItemComponent} from "./pages/item/item.component";
 import {BlogComponent} from "./pages/blog/blog.component";
+import {SearchComponent} from "./pages/search/search.component";
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'blog', component: BlogComponent},
   {path: 'item/:id', component: ItemComponent},
+  {path: 'search/:term', component: SearchComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},
 ];
 
