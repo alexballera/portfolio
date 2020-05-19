@@ -12,18 +12,26 @@ export class ProductsService {
   productsFiltered: Products[] = [];
 
   constructor(private http: HttpClient) {
-    this.getProducts()
+    this.getProducts().then(r => {
+      if (r) {
+        return;
+      }
+    })
   }
 
   private getProducts() {
-    this.http.get('https://portafolio-dea7a.firebaseio.com/productos_idx.json')
-      .subscribe((resp: Products[]) => {
 
-        this.loading = false;
+    return new Promise((resolve, reject) => {
 
-        this.products = resp;
+      this.http.get('https://portafolio-dea7a.firebaseio.com/productos_idx.json')
+        .subscribe((resp: Products[]) => {
+          this.loading = false;
+          this.products = resp;
+          resolve();
+        })
+    })
 
-      })
+
   }
 
   getProduct(id: string) {
@@ -31,10 +39,25 @@ export class ProductsService {
   }
 
   searchProducts(term: string) {
-    this.productsFiltered = this.products.filter(product => {
-      return true
-    })
+    if (this.products.length === 0) {
+      this.getProducts().then(() => {
+        this.filterProducts(term);
+      })
+    } else {
+      this.filterProducts(term);
+    }
+  }
 
-    console.log(this.productsFiltered)
+  private filterProducts(term: string) {
+    this.productsFiltered = []
+
+    term = term.toLocaleLowerCase();
+
+      this.products.forEach(prod => {
+        const titleLower = prod.titulo.toLocaleLowerCase();
+      if(prod.categoria.indexOf(term) >= 0 || titleLower.indexOf(term) >= 0) {
+        this.productsFiltered.push(prod)
+      }
+    })
   }
 }
