@@ -23,12 +23,8 @@ export class ItemComponent implements OnInit {
 
       this.productsService.getProduct(params.id)
         .subscribe((product: InfoProductInterface) => {
-
           this.id = params.id;
-
           this.product = product;
-
-          console.log(this.product)
         });
     })
 
