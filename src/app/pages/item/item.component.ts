@@ -10,6 +10,10 @@ import {InfoProductInterface} from "../../interfaces/info-product.interface";
 })
 export class ItemComponent implements OnInit {
 
+  product: InfoProductInterface;
+
+  id: string;
+
   constructor(private route: ActivatedRoute,
               public productsService: ProductsService) { }
 
@@ -20,7 +24,11 @@ export class ItemComponent implements OnInit {
       this.productsService.getProduct(params.id)
         .subscribe((product: InfoProductInterface) => {
 
-          console.log(product)
+          this.id = params.id;
+
+          this.product = product;
+
+          console.log(this.product)
         });
     })
 
